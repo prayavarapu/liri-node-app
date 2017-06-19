@@ -144,23 +144,35 @@ function movieThis(){
 
 				//console.log(data);
 
-				var randomString = data.split(", ");
+				else{
 
-				console.log(randomString);
+				var commandString = data.split(", ");
 
-				
-				randomString[0] = process.argv[2];
-				randomString[1] = process.argv[3];
+				console.log(commandString);
 
+				var command = commandString[0];
+				var param = commandString[1];
 
-				//movieThis(randomString[0], randomString[1]);
+				switch(command) {
+					case "my-tweets":
+					myTweets();
+					break;
 
-					
+					case "spotify-this-song":
+					spotifySong(param);
+					break;
+
+					case "movie-this":
+					movieThis(param);
+					break;
+				}	
+
+			}	
 		
-		})
+		});
 	}
 
-
+		
 
 
 
