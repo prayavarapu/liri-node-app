@@ -24,12 +24,16 @@ switch (action) {
 	myTweets();
 	break;
 
-	// case "spotify-this-song":
-	// spotifySong();
-	// break;
+	case "spotify-this-song":
+	spotifySong();
+	break;
 
 	case "movie-this":
 	movieThis();
+	break;
+
+	case "do-what-it-says":
+	doWhatitSays();
 	break;
 }
 
@@ -68,30 +72,31 @@ function myTweets(){
 
 //beginning of spotify function
 
-// function spotifySong(){
-// 	var songName = process.argv[3];
-// 	if (!songName){
-// 		songName = "the sign";
-// 	}
+function spotifySong(){
+	var songName = process.argv[3];
+	
+	if (!songName){
+		songName = "the sign";
+	}
 
-// 	params = songName;
-// 	spotify.search({type: "track", query: params }, function(err, data){
-// 		if (!err){
-// 			var songInfo = data.tracks.items;
-// 			for (var i = 0; i < 5; i++){
-// 				if (songInfo[i] !=undefined){
-// 					var spotifyResults = 
-// 					"Artist: " + songInfo[i].artists[0].name + "\r\n" +
-// 					"Song: " + songInfo[i].name + "\r\n" +
-// 					"Preview link: " + songInfo[i].preview_url + "\r\n" +
-// 					"Album: " + songInfo[i].album.name;
+	params = songName;
+	spotify.search({type: "track", query: params }, function(err, data){
+		if (!err){
+			var songInfo = data.tracks.items;
+			for (var i = 0; i < 5; i++){
+				if (songInfo[i] !=undefined){
+					var spotifyResults = 
+					"Artist: " + songInfo[i].artists[0].name + "\r\n" +
+					"Song: " + songInfo[i].name + "\r\n" +
+					"Preview link: " + songInfo[i].preview_url + "\r\n" +
+					"Album: " + songInfo[i].album.name;
 
-// 					console.log(spotifyResults);
-// 				}
-// 			}
-// 		}
-// 	};
-// };
+					console.log(spotifyResults);
+				}
+			}
+		}
+	});
+};
 
 //end of spotify function that isn't working
 
@@ -100,7 +105,6 @@ function myTweets(){
 
 function movieThis(){
 	var movie = process.argv[3];
-	
 
 	var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=40e9cece";
 
@@ -127,7 +131,37 @@ function movieThis(){
 	  }
 	})
 	
-	};
+	}; //end moviethis function
+
+	//do what it says function
+
+	function doWhatitSays(){
+		fs.readFile("random.txt", "utf8", function(error,data){
+			
+			if (error){
+				return console.log(error);
+			}
+
+				//console.log(data);
+
+				var randomString = data.split(", ");
+
+				console.log(randomString);
+
+				
+				randomString[0] = process.argv[2];
+				randomString[1] = process.argv[3];
+
+
+				//movieThis(randomString[0], randomString[1]);
+
+					
+		
+		})
+	}
+
+
+
 
 
 
