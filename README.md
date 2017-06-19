@@ -10,4 +10,4 @@ movie-this
 
 do-what-it-says
 
-Choose one followed by an input.
+Choose one followed by an input. Do not include spaces within your input.
